@@ -1,32 +1,15 @@
-class cliente {
-    constructor(nombre, apellido,direccion, id ) {
-        this._nombre = nombre;
-        this._apellido = apellido;
-        this._direccion = direccion;
-        this._id = id;
+class Cliente {
+    constructor(nombreTitular, numeroCuenta) {
+        this.nombreTitular = nombreTitular;
+        this.numeroCuenta = numeroCuenta;
     }
 
-    //metodos
-  
-
-    actualizarNombre(nuevoNombre) {
-        this._nombre = nuevoNombre;
-    }
-
-    actualizarApellido(nuevoApellido) {
-        this._apellido = nuevoApellido;
-    }
-
-    actualizarDireccion(nuevaDireccion) {
-        this._direccion = nuevaDireccion;
-    }
-
-    actualizarIdentificacion(nuevaIdentificacion) {
-        this._identificacion = nuevaIdentificacion;
-    }
-
-    mostrarDatos() {
-        console.log(`Nombre: ${this._nombre}, Apellido: ${this._apellido}, Dirección: ${this._direccion}, Identificación: ${this._identificacion}`);
+    // Método para actualizar los datos del cliente
+    actualizarDatos(nuevoNombre, nuevaClave, nuevaDireccion, id) {
+        this.nombre = nuevoNombre;
+        this.clave = nuevaClave;
+        console.log(`Datos del cliente ${id} actualizados.`);
     }
 }
-export default cliente;
+
+export default Cliente;

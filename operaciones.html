@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operaciones de Cuenta Bancaria</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="encabezado">
+        <h1 class="h1encabezado"><span  class="inova">Inova</span><span class="bank">Bank</span></h1>
+        <p class="butonencabezado" class="icon-button" class="salir" id="btnSalir"><i class="fas fa-sign-out-alt"></i> </p>
+    <hr>
+    </div>
+
+    <div class="contenedorTodo">
+    
+        <p class="linea" >CUENTAS</p>
+        <div class="descripcion">
+            <p>Descripcion</p>
+            <p> Cuenta</p>
+            <p>Saldo Disponible</p>
+        </div>
+
+        <div class="account-info">
+            <div class="tipo-cuenta">
+                <span >Cuenta Ahorro</span>
+            </div>
+            <div class="user-info">
+               <span id="numeroCuenta"></span>
+            </div>
+            <div class="saldo-info">
+                <span> </span>
+                <span id="saldoActual"> $ </span>
+            </div>
+        </div>
+
+        <p class="linea" >TRANSACCIONES</p> 
+        <div id="operacionesCuenta">
+
+            <div class="depositar">
+                <h2>Depositar Dinero</h2>
+                <div class="transacciones" >
+                    <input  type="number" id="cantidadDeposito" placeholder="Cantidad a depositar"  min="0">
+                    <button  id="btnDepositar">Depositar</button><br><br>
+                </div>
+            </div>
+
+            <div class="retirar">
+                <h2>Retirar Dinero</h2>
+                <div class="transacciones" > 
+                    <input type="number" id="cantidadRetiro" placeholder="Cantidad a retirar" min="0">
+                    <button id="btnRetirar">Retirar</button><br><br>
+                </div>
+            </div>
+
+        </div>
+
+        <p class="linea">TRANFERENCIA</p>
+        <div id="operacionesCuenta">
+
+            <div class="trasnferir">
+                <h2>Transferir</h2>
+                <div class="transacciones"> 
+                    <input type="text" id="numeroCuentaDestino" placeholder="Número de Cuenta" maxlength="10" minlength="10" min="0">
+                    <input type="number" id="montoTransferencia" placeholder="Cantidad a transferir" min="0">
+                    <button id="btnTransferir">Transferir</button><br><br>
+                </div>
+            </div>
+            
+
+            <div class="cuentasRegistradas">
+                 <h2>Datos Transferencia</h2>
+                 <div class="transaccionesLista" > 
+                    <p></p> 
+                </div>
+            </div>
+
+        </div>
+        <p id="mensajes"></p>
+        <p id="mensajes"></p>
+
+    </div>
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>

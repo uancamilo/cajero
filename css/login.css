@@ -1,0 +1,73 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+.h1encabezado {
+    text-align: center;
+    width: 100%;
+    color: #0e6433;
+}
+.inova {
+    color: #0e6433; /* Verde para Inova */
+}
+.bank {
+    color: #104377; /* Azul para Bank */
+}
+
+
+
+.container-inicioSesion1{
+    width: 25%;
+    margin-top: 5%;
+}
+
+.container-inicioSesion {
+
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    
+}
+label {
+    display: block;
+    margin-top: 10px;
+    color: #104377;
+}
+input {
+    width: 95%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+button {
+    width: 102%;
+    background-color: #0e6433;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+button:hover {
+    background-color: #104377;
+}
+p {
+    text-align: center;
+    margin-top: 30px;
+}
+a {
+    color: #104377;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}

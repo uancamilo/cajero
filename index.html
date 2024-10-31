@@ -3,9 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cajero</title>
+    <title>Registrar Cuenta</title>
+    <link rel="stylesheet" href="css/login.css">
 </head>
 <body>
+    
+    <div class="container-inicioSesion1">
+        <h1 class="h1encabezado">
+            <span class="inova">Inova</span><span class="bank">Bank</span>
+        </h1>
+        <h4>Registrar Nueva Cuenta</h4>
+    <div>
+
+    <div class="container-inicioSesion">
+        <p>Por favor, registrese aquí</p>
+        <form id="formCrearCuenta">
+            <label>Número de cuenta: </label>           
+            <input type="text" id="numeroCuenta" placeholder="Número de cuenta" maxlength="10" minlength="10"  title="Debe tener exactamente 10 dígitos" required>
+            <label>Nombre titular: </label>  
+            <input type="text" id="nombreTitular" placeholder="Nombre del titular" required>
+            <label>Saldo inicial: </label>  
+            <input type="number" id="saldoInicial" placeholder="Saldo inicial" maxlength="4"  title="Debe tener exactamente 4 dígitos" required>
+            <label>Contraseña: </label>  
+            <input type="password" id="clave" placeholder="Clave" maxlength="4" required>
+            <button type="submit" id="btnCrearCuenta">Crear Cuenta</button>
+        </form>
+        <p>¿Ya tienes cuenta? <a href="login.html">Inicia sesión</a></p>
+        <div id="mensajes"></div>
+
+        <!-- Botón para ir a la página de inicio de sesión -->
+        
+    </div>
+
     <script type="module" src="js/main.js"></script>
 </body>
 </html>

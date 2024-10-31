@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión</title>
+    <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+    <div class="container-inicioSesion1">
+        <h1 class="h1encabezado">
+            <span class="inova">Inova</span><span class="bank">Bank</span>
+        </h1>
+        <h4>Ingrese los datos de su cuenta</h4>
+    
+        <div class="container-inicioSesion">
+            <p>Por favor, ingresa tus datos</p>
+            <label for="numeroCuenta">Número de cuenta: </label>
+            <input type="text" id="numeroCuenta" placeholder="Número de cuenta" required>
+            <label for="clave">Contraseña:</label>
+            <input type="password" id="clave" placeholder="Clave" maxlength="4" required>
+            <button id="btnIniciarSesion">Iniciar Sesión</button>
+
+            <!-- Botón de registro -->
+            <p>¿No tienes cuenta? <a href="index.html">Regístrate</a></p>
+            <div id="mensajes"></div>
+        </div>
+    </div>
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>

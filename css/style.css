@@ -1,0 +1,211 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+.contenedorTodo{
+    width: 80%;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.inova {
+    color: #0e6433; /* Verde */
+}
+
+.bank {
+    color: #104377; /* Azul */
+}
+
+.encabezado .salir{
+   text-decoration: none;
+
+}
+
+h2 {
+    color: #0e6433; /* Azul */
+    text-align: center;
+}
+
+.account-info, #operacionesCuenta ,#trasferenciaCuenta{
+    width: 98%; /* El ancho de toda la página */
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.linea{
+    padding: 6px 15px;
+    background-color: #0e6433; /* Verde */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    width: 40%;
+    margin-bottom: 0%;
+    
+}
+p{
+    margin: auto;
+    text-align: center;
+
+}
+
+.encabezado{
+    display: flex;
+    width: 100%;
+}
+
+.h1encabezado{
+    width: 90%;
+    text-align: left;
+    padding-left: 10PX;
+}
+.butonencabezado{
+    background-color: none;
+    width: 10%;
+    padding-top: 13px;
+    color: #104377;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+
+.icon-button i {
+    margin-right: 5px; /* Espaciado entre el icono y el texto */
+}
+
+
+p.descripcion{
+    background-color: #0e6433;
+    margin: auto;
+    text-align: center;
+
+}
+
+.descripcion{   
+    display: flex;
+    justify-content: space-around;
+    width: 100%; /* Ajusta este valor según el diseño que prefieras */
+    background-color:#e0dddd ;
+    height: 30px;
+    border-radius: 2px;
+    font-weight: bold;
+}
+.account-info {
+    display: flex;
+    justify-content: space-between;
+    width: 100%; /* Ajusta este valor según el diseño que prefieras */
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd; /* Línea divisoria */
+    margin-bottom: 20px;
+}
+
+.user-info, .saldo-info, .tipo-cuenta {
+   
+    color: #104377; /* Azul oscuro */
+}
+.user-info{
+    padding: 0;
+}
+.tipo-cuenta{
+    padding-left: 10px;  
+}
+
+.saldo-info {
+    font-weight: bold;
+    padding-right: 10px;
+}
+
+/*Transacciones*/
+
+#operacionesCuenta {
+    display: flex;
+    width: 100%;
+    padding: 0;
+}
+.depositar{
+    width: 50%;
+    padding: 20px;
+}
+
+.transacciones{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: auto;
+    
+}
+.retirar{
+    width: 50%;
+    padding: 20px;
+}
+
+#operacionesCuenta h2 {
+    color: #0e6433;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #104377;
+    
+}
+
+input[type="number"], [type="text"] {
+    width: 80%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+button {
+    padding: 10px 15px;
+    background-color: #0e6433; 
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 50%;
+}
+
+button:hover {
+    background-color: #104377; 
+    text-decoration: none;
+}
+
+#mensajes {
+    margin: auto;
+    width: 50%;
+    margin-top: 20px;
+    font-weight: bold;
+    color: #104377; 
+}
+.trasnferir{
+    width: 60%;
+    padding: 20px;
+}
+.cuentasRegistradas{
+    width: 40%;
+    padding: 20px;
+}
+.transaccionesLista{
+
+}
+
