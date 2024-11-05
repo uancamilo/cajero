@@ -1,11 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cajero</title>
-</head>
-<body>
-    <script type="module" src="js/main.js"></script>
-</body>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<form id="formCrearCuenta">
+			<label for="nombre">Nombre:</label>
+			<input type="text" id="nombre" placeholder="Nombre" />
+			<label for="apellido">Apellido:</label>
+			<input type="text" id="apellido" placeholder="Apellido" />
+			<label for="numeroCuenta">Numero de cuenta:</label>
+			<input type="text" id="numeroCuenta" placeholder="Numero de cuenta" />
+			<label for="tipoCuenta">Tipo de cuenta:</label>
+			<select id="tipoCuenta">
+				<option value="ahorros">Ahorros</option>
+				<option value="corriente">Corriente</option>
+			</select>
+			<label for="depositoInicial">Deposito inicial:</label>
+			<input type="text" id="depositoInicial" placeholder="Depsito Inicial" />
+			<label for="clave">Clave:</label>
+			<input type="password" id="clave" placeholder="Clave" />
+			<button type="submit">Enviar</button>
+		</form>
+
+		<form id="formMostrarCuenta">
+			<label for="numeroCuentaIngresar">Número de cuenta:</label>
+			<input
+				type="text"
+				id="numeroCuentaIngresar"
+				placeholder="Número de cuenta"
+			/>
+			<label for="claveIngresar">Clave:</label>
+			<input type="password" id="claveIngresar" placeholder="Clave" />
+			<button type="submit">Mostrar</button>
+		</form>
+
+		<script src="./js/main.js" type="module"></script>
+	</body>
 </html>

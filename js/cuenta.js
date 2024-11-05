@@ -1,31 +1,42 @@
-class cuenta {
-    constructor(numeroCuenta, saldo = 0) {
-        this.numeroCuenta = numeroCuenta;
-        this.saldo = saldo;
-    }
+import Cliente from "./Cliente.js";
 
-    //metodos
-    
-    consultarSaldo(){
-        console.log(`El saldo actual de la cuenta ${this.numeroCuenta} es: ${this.saldo}`);
-        return this.saldo;
-    }
+class Cuenta extends Cliente {
+	constructor(nombre, apellido, numeroCuenta, tipoCuenta, clave) {
+		super(nombre, apellido);
+		this.id = Cuenta.generarId();
+		this.numeroCuenta = numeroCuenta;
+		this.tipoCuenta = tipoCuenta;
+		this.clave = clave;
+	}
 
-    realizarDeposito(cantidad){
-        if (cantidad > 0) {
-            this.saldo += cantidad;
-            console.log(`Se ha depositado ${cantidad}. Saldo actual: ${this.saldo}`);
-        } else {
-            console.log('La cantidad a depositar debe ser mayor que 0.');
-        }
-    }
-    realizarRetiro(cantidad){
-        if (cantidad > 0 && cantidad <= this.saldo) {
-            this.saldo -= cantidad;
-            console.log(`Se ha retirado ${cantidad}. Saldo actual: ${this.saldo}`);
-        } else {
-            console.log('No se puede realizar el retiro. Saldo insuficiente o cantidad inválida.');
-        }
-    }
+	// Método estático para generar un ID consecutivo
+	static generarId() {
+		const ultimoId = localStorage.getItem("ultimoIdCuenta");
+		const nuevoId = ultimoId ? parseInt(ultimoId) + 1 : 1;
+		localStorage.setItem("ultimoIdCuenta", nuevoId);
+		return nuevoId;
+	}
+
+	crearCuenta() {
+		// Crear el objeto con los datos de la cuenta
+		const datosCuenta = {
+			id: this.id,
+			nombre: this.nombre,
+			apellido: this.apellido,
+			numeroCuenta: this.numeroCuenta,
+			tipoCuenta: this.tipoCuenta,
+			clave: this.clave,
+		};
+
+		// Guardar datos de la cuenta en localStorage
+		localStorage.setItem(`cuenta_${this.id}`, JSON.stringify(datosCuenta));
+		console.log(
+			`La cuenta ${this.tipoCuenta} ha sido creada para ${this.nombre} ${this.apellido} con ID ${this.id}`
+		);
+		console.log(datosCuenta);
+		document.getElementById("formCrearCuenta").reset();
+	}
+
 }
-export default cuenta;
+
+export default Cuenta;
