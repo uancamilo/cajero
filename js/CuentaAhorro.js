@@ -4,7 +4,7 @@ class CuentaAhorro {
 	}
 
 	mostrarMensaje(mensaje) {
-		console.log(mensaje);
+		console.log("Ahorros" + mensaje);
 	}
 }
 export default CuentaAhorro;

@@ -37,6 +37,41 @@
 			<button type="submit">Mostrar</button>
 		</form>
 
+		<div id="mostrarCuenta">
+			<h2>Información de la cuenta</h2>
+			<p id="nombreMostrar"></p>
+			<p id="apellidoMostrar"></p>
+			<p id="numeroCuentaMostrar"></p>
+			<p id="tipoCuentaMostrar"></p>
+			<p id="saldoMostrar"></p>
+		</div>
+
+		<form id="formTranferir">
+			<label for="montoTransferir">Monto a transferir:</label>
+			<input
+				type="text"
+				id="montoTransferir"
+				placeholder="Monto a transferir"
+			/>
+
+			<label for="numeroCuentaTransferir">Número de cuenta:</label>
+			<input
+				type="text"
+				id="numeroCuentaTransferir"
+				placeholder="Número de cuenta"
+			/>
+
+			<label for="tipoCuentaTransferir">Tipo de cuenta:</label>
+			<select id="tipoCuentaTransferir">
+				<option value="ahorros">Ahorros</option>
+				<option value="corriente">Corriente</option>
+			</select>
+
+			<button type="submit">Transferir</button>
+		</form>
+
+		<button id="activarFuncion">Activar Función</button>
+
 		<script src="./js/main.js" type="module"></script>
 	</body>
 </html>

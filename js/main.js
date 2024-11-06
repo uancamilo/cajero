@@ -20,6 +20,7 @@ document
 			datosCuenta.apellido,
 			datosCuenta.numeroCuenta,
 			datosCuenta.tipoCuenta,
+			datosCuenta.depositoInicial,
 			datosCuenta.clave
 		);
 		cuenta.crearCuenta(datosCuenta);
@@ -27,41 +28,48 @@ document
 
 document
 	.getElementById("formMostrarCuenta")
-	.addEventListener("submit", (event) => {
+	.addEventListener("submit", async (event) => {
 		event.preventDefault();
 		const datosCuentaMostrar = {
 			numeroCuenta: document.getElementById("numeroCuentaIngresar").value,
 			clave: document.getElementById("claveIngresar").value,
 		};
-		console.log(datosCuentaMostrar);
-		// Obtener todas las claves en localStorage
-		const keys = Object.keys(localStorage);
+		const cuenta = new Cuenta();
+		const cuentaEncontrada = await cuenta.accederCuenta(datosCuentaMostrar);
 
-		// Buscar la cuenta en el localStorage
-		let cuentaEncontrada = null;
-		for (let key of keys) {
-			if (key.startsWith("cuenta_")) {
-				// Filtrar solo las claves que corresponden a cuentas
-				const cuenta = JSON.parse(localStorage.getItem(key));
-
-				// Comparar el número de cuenta y la clave
-				if (
-					cuenta.numeroCuenta === datosCuentaMostrar.numeroCuenta &&
-					cuenta.clave === datosCuentaMostrar.clave
-				) {
-					cuentaEncontrada = cuenta;
-					break;
-				}
-			}
-		}
-
-		// Mostrar el resultado de la búsqueda
 		if (cuentaEncontrada) {
-			console.log("Cuenta encontrada:", cuentaEncontrada);
+			console.log(cuentaEncontrada);
+			// Asignar los valores de cuentaEncontrada a los elementos en el HTML
+			document.getElementById("nombreMostrar").textContent =
+				cuentaEncontrada.nombre;
+			document.getElementById("apellidoMostrar").textContent =
+				cuentaEncontrada.apellido;
+			document.getElementById("numeroCuentaMostrar").textContent =
+				cuentaEncontrada.numeroCuenta;
+			document.getElementById("tipoCuentaMostrar").textContent =
+				cuentaEncontrada.tipoCuenta;
+			document.getElementById("saldoMostrar").textContent =
+				cuentaEncontrada.saldo;
 		} else {
-			console.log("No se encontró ninguna cuenta con los datos ingresados.");
+			console.log("Cuenta no encontrada.");
 		}
 	});
 
-// const cuentaUsuario = new CuentaAhorro();
-// cuentaUsuario.mostrarMensaje("hola");
+document.getElementById("formTranferir").addEventListener("submit", (event) => {
+	event.preventDefault();
+	const datosTransferencia = {
+		numeroCuentaDestino: document.getElementById("numeroCuentaTransferir")
+			.value,
+		monto: document.getElementById("montoTransferir").value,
+		tipoCuentaTransferir: document.getElementById("tipoCuentaTransferir").value,
+	};
+
+	console.log(datosTransferencia);
+
+	if (datosTransferencia.tipoCuentaTransferir === "ahorros") {
+		const tranferencia = new CuentaAhorro;
+		tranferencia.mostrarMensaje();
+	} else {
+		console.log("corriente");
+	}
+});
