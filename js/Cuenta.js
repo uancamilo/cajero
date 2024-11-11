@@ -1,19 +1,12 @@
 import Cliente from "./Cliente.js";
 
 class Cuenta extends Cliente {
-	constructor(
-		nombre,
-		apellido,
-		numeroCuenta,
-		tipoCuenta,
-		depositoInicial,
-		clave
-	) {
+	constructor(nombre, apellido, numeroCuenta, tipoCuenta, saldo, clave) {
 		super(nombre, apellido);
 		this.id = Cuenta.generarId();
 		this.numeroCuenta = numeroCuenta;
 		this.tipoCuenta = tipoCuenta;
-		this.depositoInicial = depositoInicial;
+		this.saldo = Number(saldo);
 		this.clave = clave;
 	}
 
@@ -33,7 +26,7 @@ class Cuenta extends Cliente {
 			apellido: this.apellido,
 			numeroCuenta: this.numeroCuenta,
 			tipoCuenta: this.tipoCuenta,
-			depositoInicial: this.depositoInicial,
+			saldo: Number(this.saldo),
 			clave: this.clave,
 		};
 
@@ -45,49 +38,39 @@ class Cuenta extends Cliente {
 		document.getElementById("formCrearCuenta").reset();
 	}
 
-	async buscarCuenta(datosCuentaMostrar) {
+	async buscarCuenta(numeroCuenta) {
+		for (let key in localStorage) {
+			if (key.startsWith("cuenta_")) {
+				const cuenta = JSON.parse(localStorage.getItem(key));
+				if (cuenta.numeroCuenta === numeroCuenta) {
+					return cuenta.numeroCuenta;
+				}
+			}
+		}
+		console.log("Cuenta no encontrada"); // Muestra mensaje si no se encuentra la cuenta
+		return false;
+	}
+
+	async accederCuenta(datosCuentaMostrar) {
 		const keys = Object.keys(localStorage);
-		let cuentaEncontrada = null;
 
 		for (let key of keys) {
 			if (key.startsWith("cuenta_")) {
-				// Filtrar solo las claves que corresponden a cuentas
 				const cuenta = JSON.parse(localStorage.getItem(key));
 
-				// Comparar el número de cuenta y la clave
+				// Verificar si el número de cuenta y la clave coinciden
 				if (
 					cuenta.numeroCuenta === datosCuentaMostrar.numeroCuenta &&
 					cuenta.clave === datosCuentaMostrar.clave
 				) {
-					cuentaEncontrada = cuenta;
-					break; // Terminar el ciclo si la cuenta es encontrada
+					localStorage.setItem("cuentaActual", JSON.stringify(cuenta));
+					return cuenta;
 				}
 			}
 		}
-		return cuentaEncontrada;
+		// Si no se encuentra la cuenta, mostrar un mensaje o realizar otra acción
+		console.log("Cuenta no encontrada.");
+		return null;
 	}
-
-	async accederCuenta(datosCuentaMostrar) {
-		// Esperar el resultado de buscarCuenta
-		const cuentaEncontrada = await this.buscarCuenta(datosCuentaMostrar);
-
-		if (cuentaEncontrada) {
-			// Verificar si existe 'depositoInicial' y reemplazarlo por 'saldo'
-			if (cuentaEncontrada.depositoInicial !== undefined) {
-				cuentaEncontrada.saldo = cuentaEncontrada.depositoInicial;
-				delete cuentaEncontrada.depositoInicial; // Eliminar depositoInicial si ya no es necesario
-			}
-
-			// Sobrescribir la cuenta actualizada en localStorage con la misma clave
-			const cuentaKey = `cuenta_${cuentaEncontrada.id}`;
-			localStorage.setItem(cuentaKey, JSON.stringify(cuentaEncontrada));
-		} else {
-			console.log("Cuenta no encontrada.");
-		}
-
-		return cuentaEncontrada;
-	}
-
 }
-
 export default Cuenta;

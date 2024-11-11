@@ -19,25 +19,29 @@
 				<option value="corriente">Corriente</option>
 			</select>
 			<label for="depositoInicial">Deposito inicial:</label>
-			<input type="text" id="depositoInicial" placeholder="Depsito Inicial" />
+			<input type="number" id="depositoInicial" placeholder="Depsito Inicial" />
 			<label for="clave">Clave:</label>
 			<input type="password" id="clave" placeholder="Clave" />
 			<button type="submit">Enviar</button>
 		</form>
 
-		<form id="formMostrarCuenta">
+		<form id="formNumeroCuenta">
 			<label for="numeroCuentaIngresar">Número de cuenta:</label>
 			<input
 				type="text"
 				id="numeroCuentaIngresar"
 				placeholder="Número de cuenta"
 			/>
-			<label for="claveIngresar">Clave:</label>
-			<input type="password" id="claveIngresar" placeholder="Clave" />
-			<button type="submit">Mostrar</button>
+			<button type="submit">Listo</button>
 		</form>
 
-		<div id="mostrarCuenta">
+		<form id="formClaveCuenta" style="display: none">
+			<label for="claveIngresar">Clave:</label>
+			<input type="password" id="claveIngresar" placeholder="Clave" />
+			<button type="submit">Ingresar</button>
+		</form>
+
+		<div id="mostrarCuenta" {style="display: none;" }>
 			<h2>Información de la cuenta</h2>
 			<p id="nombreMostrar"></p>
 			<p id="apellidoMostrar"></p>
@@ -46,10 +50,10 @@
 			<p id="saldoMostrar"></p>
 		</div>
 
-		<form id="formTranferir">
+		<form id="formTranferir" {style="display: none;" }>
 			<label for="montoTransferir">Monto a transferir:</label>
 			<input
-				type="text"
+				type="number"
 				id="montoTransferir"
 				placeholder="Monto a transferir"
 			/>

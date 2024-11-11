@@ -1,5 +1,6 @@
 import Cuenta from "./Cuenta.js";
 import CuentaAhorro from "./CuentaAhorro.js";
+import CuentaCorriente from "./CuentaCorriente.js";
 
 document
 	.getElementById("formCrearCuenta")
@@ -27,29 +28,55 @@ document
 	});
 
 document
-	.getElementById("formMostrarCuenta")
+	.getElementById("formNumeroCuenta")
 	.addEventListener("submit", async (event) => {
 		event.preventDefault();
-		const datosCuentaMostrar = {
-			numeroCuenta: document.getElementById("numeroCuentaIngresar").value,
-			clave: document.getElementById("claveIngresar").value,
-		};
+		const numeroCuenta = document.getElementById("numeroCuentaIngresar").value;
 		const cuenta = new Cuenta();
-		const cuentaEncontrada = await cuenta.accederCuenta(datosCuentaMostrar);
+		const cuentaEncontrada = await cuenta.buscarCuenta(numeroCuenta);
 
-		if (cuentaEncontrada) {
-			console.log(cuentaEncontrada);
-			// Asignar los valores de cuentaEncontrada a los elementos en el HTML
+		// Verifica si se encontró la cuenta y muestra el formulario de clave
+		if (cuentaEncontrada === numeroCuenta) {
+			document
+				.getElementById("numeroCuentaIngresar")
+				.setAttribute("readonly", true);
+			document.getElementById("formClaveCuenta").style.display = "block";
+		} else {
+			alert("Cuenta no encontrada");
+		}
+	});
+
+document
+	.getElementById("formClaveCuenta")
+	.addEventListener("submit", async (event) => {
+		event.preventDefault();
+
+		// Obtener los datos de los formularios
+		const numeroCuenta = document.getElementById("numeroCuentaIngresar").value;
+		const clave = document.getElementById("claveIngresar").value;
+
+		// Asignar los valores a una variable
+		const datosIngresar = {
+			numeroCuenta: numeroCuenta,
+			clave: clave,
+		};
+
+		const cuenta = new Cuenta();
+		const cuentaMostrar = await cuenta.accederCuenta(datosIngresar);
+		if (cuentaMostrar) {
+			// Asignar los valores de cuentaMostrar a los elementos en el HTML
 			document.getElementById("nombreMostrar").textContent =
-				cuentaEncontrada.nombre;
+				cuentaMostrar.nombre;
 			document.getElementById("apellidoMostrar").textContent =
-				cuentaEncontrada.apellido;
+				cuentaMostrar.apellido;
 			document.getElementById("numeroCuentaMostrar").textContent =
-				cuentaEncontrada.numeroCuenta;
+				cuentaMostrar.numeroCuenta;
 			document.getElementById("tipoCuentaMostrar").textContent =
-				cuentaEncontrada.tipoCuenta;
-			document.getElementById("saldoMostrar").textContent =
-				cuentaEncontrada.saldo;
+				cuentaMostrar.tipoCuenta;
+			document.getElementById("saldoMostrar").textContent = cuentaMostrar.saldo;
+			document.getElementById("formClaveCuenta").reset();
+			document.getElementById("mostrarCuenta").style.display = "block";
+			document.getElementById("formTranferir").style.display = "block";
 		} else {
 			console.log("Cuenta no encontrada.");
 		}
@@ -64,12 +91,11 @@ document.getElementById("formTranferir").addEventListener("submit", (event) => {
 		tipoCuentaTransferir: document.getElementById("tipoCuentaTransferir").value,
 	};
 
-	console.log(datosTransferencia);
-
 	if (datosTransferencia.tipoCuentaTransferir === "ahorros") {
-		const tranferencia = new CuentaAhorro;
-		tranferencia.mostrarMensaje();
+		const transferencia = new CuentaAhorro();
+		transferencia.transferir(datosTransferencia);
 	} else {
-		console.log("corriente");
+		const transferencia = new CuentaCorriente();
+		transferencia.transferir(datosTransferencia);
 	}
 });
