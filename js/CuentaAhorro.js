@@ -1,10 +1,11 @@
 class CuentaAhorro {
 	async transferir(datosTransferencia) {
 		const cuentaDestino = datosTransferencia.numeroCuentaDestino;
-		const montoTransferencia = Number(datosTransferencia.monto); // Convertir monto a número
+		const montoTransferencia = Number(datosTransferencia.monto);
+		const tipoCuentaTransferir = datosTransferencia.tipoCuentaTransferir;
 
 		const cuentaActual = JSON.parse(localStorage.getItem("cuentaActual"));
-		let saldoCuentaActual = Number(cuentaActual.saldo); // Convertir saldo a número
+		let saldoCuentaActual = Number(cuentaActual.saldo);
 
 		const keys = Object.keys(localStorage);
 		let cuentaDestinoEncontrada = null;
@@ -13,7 +14,10 @@ class CuentaAhorro {
 		for (let key of keys) {
 			if (key.startsWith("cuenta_")) {
 				const cuenta = JSON.parse(localStorage.getItem(key));
-				if (cuenta.numeroCuenta === cuentaDestino) {
+				if (
+					cuenta.numeroCuenta === cuentaDestino &&
+					cuenta.tipoCuenta === tipoCuentaTransferir
+				) {
 					cuentaDestinoEncontrada = cuenta;
 					break;
 				}
@@ -21,7 +25,9 @@ class CuentaAhorro {
 		}
 
 		if (!cuentaDestinoEncontrada) {
-			console.log("La cuenta de destino no existe.");
+			console.log(
+				"No se puede realizar la transferencia"
+			);
 			return;
 		}
 

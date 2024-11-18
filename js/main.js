@@ -89,18 +89,57 @@ document
 
 document.getElementById("formTranferir").addEventListener("submit", (event) => {
 	event.preventDefault();
-	const datosTransferencia = {
-		numeroCuentaDestino: document.getElementById("numeroCuentaTransferir")
-			.value,
-		monto: document.getElementById("montoTransferir").value,
-		tipoCuentaTransferir: document.getElementById("tipoCuentaTransferir").value,
-	};
 
-	if (datosTransferencia.tipoCuentaTransferir === "ahorros") {
-		const transferencia = new CuentaAhorro();
-		transferencia.transferir(datosTransferencia);
-	} else {
-		const transferencia = new CuentaCorriente();
-		transferencia.transferir(datosTransferencia);
+	// Obtener y validar los datos de entrada
+	const numeroCuentaDestino = document
+		.getElementById("numeroCuentaTransferir")
+		.value.trim();
+	const monto = parseFloat(document.getElementById("montoTransferir").value);
+	const tipoCuentaTransferir = document.getElementById(
+		"tipoCuentaTransferir"
+	).value;
+
+	if (
+		!numeroCuentaDestino ||
+		isNaN(monto) ||
+		monto <= 0 ||
+		!tipoCuentaTransferir
+	) {
+		alert("Por favor, completa todos los campos correctamente.");
+		return;
 	}
+
+	// Obtener la cuenta actual del localStorage
+	const cuentaActual = JSON.parse(localStorage.getItem("cuentaActual"));
+	if (!cuentaActual) {
+		alert("No se encontró información de la cuenta actual.");
+		return;
+	}
+
+	const tipoCuentaActual = cuentaActual.tipoCuenta;
+	const saldoActual = parseFloat(cuentaActual.saldo);
+
+	// Validar tipo de cuenta y saldo permitido
+	if (tipoCuentaActual === "ahorros" && saldoActual >= monto) {
+		const transferencia = new CuentaAhorro();
+		transferencia.transferir({
+			numeroCuentaDestino,
+			monto,
+			tipoCuentaTransferir,
+		});
+	} else if (tipoCuentaActual === "corriente" && saldoActual - monto >= -500) {
+		const transferencia = new CuentaCorriente();
+		transferencia.transferir({
+			numeroCuentaDestino,
+			monto,
+			tipoCuentaTransferir,
+		});
+	} else {
+		alert("Saldo insuficiente para realizar la transferencia.");
+	}
+	document.getElementById("formTranferir").reset();
+});
+
+document.getElementById("btnCerrar").addEventListener("click", () => {
+	localStorage.removeItem("cuentaActual");
 });
