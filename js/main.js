@@ -74,8 +74,12 @@ document
 			document.getElementById("tipoCuentaMostrar").textContent =
 				cuentaMostrar.tipoCuenta;
 			document.getElementById("saldoMostrar").textContent = cuentaMostrar.saldo;
-			document.getElementById("formNumeroCuenta").reset();
 			document.getElementById("formClaveCuenta").reset();
+			document.getElementById("formNumeroCuenta").reset();
+			document
+				.getElementById("numeroCuentaIngresar")
+				.removeAttribute("readonly");
+			document.getElementById("formClaveCuenta").style.display = "none";
 			document.getElementById("mostrarCuenta").style.display = "block";
 			document.getElementById("formTranferir").style.display = "block";
 		} else {
