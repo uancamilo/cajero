@@ -3,79 +3,343 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Document</title>
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+			integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+			crossorigin="anonymous"
+		/>
+
+		<title>Cajero</title>
 	</head>
 	<body>
-		<form id="formCrearCuenta">
-			<label for="nombre">Nombre:</label>
-			<input type="text" id="nombre" placeholder="Nombre" />
-			<label for="apellido">Apellido:</label>
-			<input type="text" id="apellido" placeholder="Apellido" />
-			<label for="numeroCuenta">Numero de cuenta:</label>
-			<input type="text" id="numeroCuenta" placeholder="Numero de cuenta" />
-			<label for="tipoCuenta">Tipo de cuenta:</label>
-			<select id="tipoCuenta">
-				<option value="ahorros">Ahorros</option>
-				<option value="corriente">Corriente</option>
-			</select>
-			<label for="depositoInicial">Deposito inicial:</label>
-			<input type="number" id="depositoInicial" placeholder="Depsito Inicial" />
-			<label for="clave">Clave:</label>
-			<input type="password" id="clave" placeholder="Clave" />
-			<button type="submit">Enviar</button>
-		</form>
-
-		<form id="formNumeroCuenta">
-			<label for="numeroCuentaIngresar">Número de cuenta:</label>
-			<input
-				type="text"
-				id="numeroCuentaIngresar"
-				placeholder="Número de cuenta"
-			/>
-			<button type="submit">Listo</button>
-		</form>
-
-		<form id="formClaveCuenta" style="display: none">
-			<label for="claveIngresar">Clave:</label>
-			<input type="password" id="claveIngresar" placeholder="Clave" />
-			<button type="submit">Ingresar</button>
-		</form>
-
-		<div id="mostrarCuenta" {style="display: none;" }>
-			<h2>Información de la cuenta</h2>
-			<p id="nombreMostrar"></p>
-			<p id="apellidoMostrar"></p>
-			<p id="numeroCuentaMostrar"></p>
-			<p id="tipoCuentaMostrar"></p>
-			<p id="saldoMostrar"></p>
+		<div
+			class="modal fade"
+			id="formModalCrearCuenta"
+			tabindex="-1"
+			aria-labelledby="formModalLabelCrearCuenta"
+			aria-hidden="true"
+		>
+			<div class="modal-dialog modal-fullscreen-xl-down">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="formModalLabelCrearCuenta">
+							Crear Cuenta
+						</h5>
+						<button
+							type="button"
+							class="btn-close"
+							data-bs-dismiss="modal"
+							aria-label="Close"
+						></button>
+					</div>
+					<div class="modal-body">
+						<form id="formCrearCuenta" class="p-4 border rounded shadow-sm">
+							<div class="row">
+								<div class="col-md-6 mb-3">
+									<label for="nombre" class="form-label">Nombre:</label>
+									<input
+										type="text"
+										id="nombre"
+										class="form-control"
+										placeholder="Nombre"
+									/>
+								</div>
+								<div class="col-md-6 mb-3">
+									<label for="apellido" class="form-label">Apellido:</label>
+									<input
+										type="text"
+										id="apellido"
+										class="form-control"
+										placeholder="Apellido"
+									/>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-6 mb-3">
+									<label for="numeroCuenta" class="form-label"
+										>Número de cuenta:</label
+									>
+									<input
+										type="text"
+										id="numeroCuenta"
+										class="form-control"
+										placeholder="Número de cuenta"
+									/>
+								</div>
+								<div class="col-md-6 mb-3">
+									<label for="clave" class="form-label">Clave:</label>
+									<input
+										type="password"
+										id="clave"
+										class="form-control"
+										placeholder="Clave"
+									/>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-6 mb-3">
+									<label for="tipoCuenta" class="form-label"
+										>Tipo de cuenta:</label
+									>
+									<select id="tipoCuenta" class="form-select">
+										<option value="ahorros">Ahorros</option>
+										<option value="corriente">Corriente</option>
+									</select>
+								</div>
+								<div class="col-md-6 mb-3">
+									<label for="depositoInicial" class="form-label"
+										>Depósito inicial:</label
+									>
+									<input
+										type="number"
+										id="depositoInicial"
+										class="form-control"
+										placeholder="Depósito Inicial"
+									/>
+								</div>
+							</div>
+							<button type="submit" class="btn btn-primary w-100">
+								Enviar
+							</button>
+						</form>
+					</div>
+				</div>
+			</div>
 		</div>
 
-		<form id="formTranferir" {style="display: none;" }>
-			<label for="montoTransferir">Monto a transferir:</label>
-			<input
-				type="number"
-				id="montoTransferir"
-				placeholder="Monto a transferir"
-			/>
+		<div class="container vh-100">
+			<div class="d-flex h-100 justify-content-evenly align-items-center">
+				<div class="card" style="width: 18rem">
+					<div class="card-body">
+						<h5 class="card-title">Crear Cuenta</h5>
+						<p class="card-text">
+							Haz clic en el siguiente botón para crear una nueva cuenta.
+						</p>
+						<button
+							type="button"
+							class="btn btn-primary w-100"
+							data-bs-toggle="modal"
+							data-bs-target="#formModalCrearCuenta"
+						>
+							Crear Cuenta
+						</button>
+					</div>
+				</div>
 
-			<label for="numeroCuentaTransferir">Número de cuenta:</label>
-			<input
-				type="text"
-				id="numeroCuentaTransferir"
-				placeholder="Número de cuenta"
-			/>
+				<div class="card" style="width: 18rem">
+					<div class="card-body">
+						<h5 class="card-title">Acceso a Cuenta</h5>
+						<p class="card-text">
+							Haz clic en el siguiente botón para acceder a tu cuenta.
+						</p>
+						<button
+							type="button"
+							class="btn btn-primary w-100"
+							data-bs-toggle="modal"
+							data-bs-target="#formModalAccesoCuenta"
+						>
+							Acceder
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
 
-			<label for="tipoCuentaTransferir">Tipo de cuenta:</label>
-			<select id="tipoCuentaTransferir">
-				<option value="ahorros">Ahorros</option>
-				<option value="corriente">Corriente</option>
-			</select>
+		<div
+			class="modal fade"
+			id="formModalAccesoCuenta"
+			tabindex="-1"
+			aria-labelledby="formModalLabelAccesoCuenta"
+			aria-hidden="true"
+		>
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="formModalLabelAccesoCuenta">
+							Acceso a Cuenta
+						</h5>
+						<button
+							type="button"
+							class="btn-close"
+							data-bs-dismiss="modal"
+							aria-label="Close"
+						></button>
+					</div>
+					<div class="modal-body">
+						<!-- Formulario 1: Número de cuenta -->
+						<form id="formNumeroCuenta" class="p-4 border rounded shadow-sm">
+							<div class="mb-3">
+								<label for="numeroCuentaIngresar" class="form-label"
+									>Número de cuenta:</label
+								>
+								<input
+									type="text"
+									id="numeroCuentaIngresar"
+									class="form-control"
+									placeholder="Número de cuenta"
+								/>
+							</div>
+							<button type="submit" class="btn btn-primary w-100">Listo</button>
+						</form>
 
-			<button type="submit">Transferir</button>
-		</form>
+						<form
+							id="formClaveCuenta"
+							style="display: none"
+							class="p-4 border rounded shadow-sm mt-4"
+						>
+							<div class="mb-3">
+								<label for="claveIngresar" class="form-label">Clave:</label>
+								<input
+									type="password"
+									id="claveIngresar"
+									class="form-control"
+									placeholder="Clave"
+								/>
+							</div>
+							<button
+								type="submit"
+								class="btn btn-primary w-100"
+								data-bs-toggle="modal"
+								data-bs-target="#modalMostrarCuenta"
+							>
+								Ingresar
+							</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
 
-		<button id="activarFuncion">Activar Función</button>
+		<div
+			class="modal fade"
+			id="modalMostrarCuenta"
+			tabindex="-1"
+			aria-labelledby="modalMostrarCuentaLabel"
+			aria-hidden="true"
+		>
+			<div class="modal-dialog modal-fullscreen-xxl-down">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="modalMostrarCuentaLabel">
+							Información de la cuenta
+						</h5>
+						<button
+							type="button"
+							class="btn-close"
+							data-bs-dismiss="modal"
+							aria-label="Close"
+						></button>
+					</div>
+					<div class="modal-body">
+						<div class="row">
+							<!-- Información de la Cuenta -->
+							<div class="col-md-6">
+								<div
+									id="mostrarCuenta"
+									class="p-4 border rounded shadow-sm bg-light"
+								>
+									<p class="mb-2">
+										<strong>Nombre:</strong>
+										<span
+											class="text-muted text-uppercase d-block"
+											id="nombreMostrar"
+											>[Nombre]</span
+										>
+									</p>
+									<p class="mb-2">
+										<strong>Apellido:</strong>
+										<span
+											class="text-muted text-uppercase d-block"
+											id="apellidoMostrar"
+											>[Apellido]</span
+										>
+									</p>
+									<p class="mb-2">
+										<strong>Número de cuenta:</strong>
+										<span
+											class="text-muted text-uppercase d-block"
+											id="numeroCuentaMostrar"
+											>[Número de Cuenta]</span
+										>
+									</p>
+									<p class="mb-2">
+										<strong>Tipo de cuenta:</strong>
+										<span
+											class="text-muted text-uppercase d-block"
+											id="tipoCuentaMostrar"
+											>[Tipo de Cuenta]</span
+										>
+									</p>
+									<p class="mb-0">
+										<strong>Saldo:</strong>
+										<span
+											class="text-muted text-uppercase d-block"
+											id="saldoMostrar"
+											>[Saldo]</span
+										>
+									</p>
+								</div>
+							</div>
 
+							<!-- Formulario para Transferencia -->
+							<div class="col-md-6">
+								<div class="p-4 border rounded shadow-sm bg-light">
+									<form id="formTranferir" style="display: none">
+										<div class="mb-3">
+											<label for="montoTransferir" class="form-label m-0">
+												<strong>Monto a transferir:</strong>
+											</label>
+											<input
+												type="number"
+												id="montoTransferir"
+												class="form-control"
+												placeholder="Monto a transferir"
+											/>
+										</div>
+
+										<div class="mb-3">
+											<label
+												for="numeroCuentaTransferir"
+												class="form-label m-0"
+											>
+												<strong>Número de cuenta:</strong>
+											</label>
+											<input
+												type="text"
+												id="numeroCuentaTransferir"
+												class="form-control"
+												placeholder="Número de cuenta"
+											/>
+										</div>
+
+										<div class="mb-3">
+											<label for="tipoCuentaTransferir" class="form-label m-0">
+												<strong>Tipo de cuenta:</strong>
+											</label>
+											<select id="tipoCuentaTransferir" class="form-select">
+												<option value="ahorros">Ahorros</option>
+												<option value="corriente">Corriente</option>
+											</select>
+										</div>
+
+										<button type="submit" class="btn btn-primary w-100">
+											Transferir
+										</button>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+			crossorigin="anonymous"
+		></script>
 		<script src="./js/main.js" type="module"></script>
 	</body>
 </html>
