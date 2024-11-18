@@ -47,7 +47,7 @@ class Cuenta extends Cliente {
 				}
 			}
 		}
-		console.log("Cuenta no encontrada"); // Muestra mensaje si no se encuentra la cuenta
+		console.log("Cuenta no encontrada"); 
 		return false;
 	}
 

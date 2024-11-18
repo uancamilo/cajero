@@ -39,6 +39,12 @@ class CuentaAhorro {
 				`cuenta_${cuentaDestinoEncontrada.id}`,
 				JSON.stringify(cuentaDestinoEncontrada)
 			);
+			localStorage.setItem(
+				`cuenta_${cuentaActual.id}`,
+				JSON.stringify(cuentaActual)
+			);
+
+			document.getElementById("saldoMostrar").textContent = cuentaActual.saldo;
 
 			console.log("Transferencia realizada con éxito.");
 		} else {
